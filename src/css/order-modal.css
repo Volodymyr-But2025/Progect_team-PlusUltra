@@ -95,11 +95,15 @@
     padding: 8px 12px;
     width: 295px;
     height: 42px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+    color: rgba(8, 12, 9, 0.6);
 }
 
-.order-form input:focus .order-form input:hover {
-        border: 1px solid rgba(8, 12, 9, 0.15);
-        opacity: 15;
+.order-form input:focus {
+    border: 1px solid rgba(8, 12, 9, 0.4);
 }
 
 .order-form textarea {
@@ -110,6 +114,15 @@
     padding: 12px;
     width: 295px;
     height: 180px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+    color: rgba(8, 12, 9, 0.6);
+}
+
+.order-form textarea:focus {
+    border: 1px solid rgba(8, 12, 9, 0.4);
 }
 
 .order-button {
@@ -122,20 +135,24 @@
     font-size: 16px;
     line-height: 160%;
     color: #fff;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.order-form textarea::placeholder .order-form input::placeholder{
+.order-button:hover, 
+.order-button:focus {
+    box-shadow: 0 1px 2px 0 rgba(8, 12, 9, 0.05), inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(8, 12, 9, 0.15), inset 0 2px 1px 0 rgba(255, 255, 255, 0.25), inset 0 32px 24px 0 rgba(255, 255, 255, 0.05);
+    background: #6b0609;
+    opacity: 0.5;
+}
+
+/* .order-form textarea::placeholder .order-form input::placeholder{
     font-family: "Raleway", sans-serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 160%;
     color: rgba(8, 12, 9, 0.6);
-}
-
-/* .order-form input:focus .order-form textarea:hover {
-    border: 1px solid rgba(8, 12, 9, 0.4);
 } */
-
 
 @media (min-width: 768px) {
     .order-modal-overlay {
