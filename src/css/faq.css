@@ -1,0 +1,35 @@
+.faq-div li {
+  border-bottom: 1px solid #ccc;
+  padding: 15px 0;
+}
+
+.faq-div h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-div p {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  margin: 0;
+}
+
+.faq-div li.active p {
+  max-height: 200px;
+  margin-top: 10px;
+}
+
+.faq-arrow svg {
+  transition: transform 0.3s ease;
+}
+
+.faq-div li.active .faq-arrow svg {
+  transform: rotate(180deg);
+}
+
+.faq-arrow svg {
+  fill: black;
+}
