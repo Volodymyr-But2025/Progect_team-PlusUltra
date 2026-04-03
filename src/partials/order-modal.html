@@ -1,0 +1,29 @@
+<div class="order-backdrop is-open">
+  <div class="order-modal-overlay">
+    <button type="button" class="modal-close-button">
+      <svg class="close-button" width="8" height="8">
+        <use href="./img/icons.svg#icon-modal-order-close-button"></use>
+      </svg>
+    </button>
+    <p class="order-modal-title">Замовити</p>
+    <form class="order-form" id="order-form">
+      <label for="name"
+        >Ім’я*
+        <input type="text" id="name" placeholder="Дмитро" required autofocus />
+      </label>
+      <label for="phone"
+        >Телефон*
+        <input type="tel" id="phone" placeholder="38 099 123 22 11" required />
+      </label>
+      <label for="comment"
+        >Коментар
+        <textarea
+          type="text"
+          id="comment"
+          placeholder="Введіть ваш коментар"
+        ></textarea>
+      </label>
+      <button type="submit" class="order-button">Надіслати заявку</button>
+    </form>
+  </div>
+</div>
