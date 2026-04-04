@@ -1,0 +1,152 @@
+.furniture-category__title {
+  font-weight: 700;
+  font-size: 36px;
+
+  /* line-height: 43px; */
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  margin-bottom: 16px;
+  margin-top: 48px;
+}
+
+.furniture-category__subtitle {
+  font-weight: 400;
+  font-size: 18px;
+
+  /* line-height: 29px; */
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+.furniture-category__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  list-style: none; /* Прибираємо маркери, якщо не прибрали в reset */
+  padding: 0;
+}
+
+.furniture-category__item {
+  /* Замість max-width використовуй flex-basis для стабільності */
+  flex-basis: calc((100% - 16px) / 2);
+
+  height: 120px;
+
+  box-sizing: border-box; /* Важливо, щоб бордер не розширював картку */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 250ms ease;
+  border-radius: 8px;
+}
+
+.akcent-item-color {
+  border: 8px solid #6b0609;
+}
+
+.furniture-category__link {
+  display: flex; /* Зроби флексом, щоб текст був по центру */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%; /* Щоб посилання займало всю висоту li */
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 0 8px; /* Додай відступи з боків для кращого вигляду тексту */
+
+  /* line-height: 25px; */
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
+.vsi-tovary {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../img/category/vsi-tovary.jpg');
+}
+
+.soft-furniture {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../img/category/2.jpg');
+}
+
+.storage-systems {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../img/category/3.jpg');
+}
+.beds-mattresses {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../img/category/4.jpg');
+}
+
+.tables {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../img/category/5.jpg');
+}
+.chairs-stools {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../img/category/6.jpg');
+}
+.kitchens {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../img/category/7.jpg');
+}
+
+.kids-furniture {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../img/category/8.jpg');
+}
+.office-furniture {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../img/category/9.jpg');
+}
+.hallway-furniture {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../img/category/10.jpg');
+}
+.bathroom-furniture {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../img/category/11.jpg');
+}
+.garden-furniture {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../img/category/12.jpg');
+}
+.decor-accessories {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('../img/category/13.jpg');
+}
+
+@media (min-width: 768px) {
+  .furniture-category__list {
+    gap: 24px;
+  }
+  .furniture-category__item {
+    flex-basis: calc((100% - 24px * 3) / 4); /* Чотири колонки з відступами */
+    height: 122px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .furniture-category__title {
+    margin-top: 80px;
+  }
+  .furniture-category__item {
+    flex-basis: calc((100% - 24px * 6) / 7); /* Сім колонок з відступами */
+  }
+}

@@ -1,0 +1,57 @@
+.feedback-title{
+font-weight: 700;
+font-size: 36px;
+color: #080c09;
+margin-bottom: 24px;
+line-height: 1.2;
+}
+
+.feedback-text{
+font-weight: 400;
+font-size: 18px;
+margin-bottom: 80px;
+line-height: 1.6;
+color: #080c09;
+}
+
+.feedback-slider{
+   padding-bottom: 48px; 
+}
+.feedback-list-review {
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 24px;
+    line-height: 1.6;
+    color: #080c09;
+}
+
+.feedback-user {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #080c09;
+}
+
+@media screen and (min-width:768px) {
+
+.feedback-list{
+display: flex;
+flex-direction: wrap;
+gap: 24px;
+}
+.feedback-list-item{
+    width: 341px;
+    height: 254px;
+}
+
+}
+
+@media screen and (min-width:1440px){
+.feedback-list-item {
+    width: 421px;
+     height: 220px;
+    }
+}
+
+
+
