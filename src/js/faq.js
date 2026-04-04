@@ -1,15 +1,9 @@
-const items = document.querySelectorAll('.faq-div li');
+import Accordion from 'accordion-js';
 
-items.forEach(item => {
-  const title = item.querySelector('h3');
-
-  title.addEventListener('click', () => {
-    items.forEach(i => {
-      if (i !== item) {
-        i.classList.remove('active');
-      }
-    });
-
-    item.classList.toggle('active');
+document.addEventListener('DOMContentLoaded', () => {
+  new Accordion('.accordion', {
+    duration: 300,
+    showMultiple: false,
+    collapse: true,
   });
 });
