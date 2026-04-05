@@ -1,10 +1,39 @@
 import axios from "axios"
+import iziToast from "izitoast";
 
 let formData = {};
 
 const formEl = document.querySelector('.order-form');
 const backdropEl = document.querySelector('.order-backdrop');
 const closeBtn = document.querySelector('.modal-close-button');
+const phoneInput = document.getElementById('phone');
+
+  phoneInput.addEventListener('input', () => {
+    // прибираємо все, крім цифр
+    let digits = phoneInput.value.replace(/\D/g, '');
+
+    // якщо починається з 8 або 0 — приводимо до 380
+    if (digits.startsWith('0')) {
+      digits = '38' + digits;
+    } else if (digits.startsWith('8')) {
+      digits = '3' + digits;
+    }
+
+    // обмежуємо до 12 цифр
+    digits = digits.slice(0, 12);
+
+    phoneInput.value = digits;
+  });
+
+  // фінальна перевірка при сабміті
+//   phoneInput.form?.addEventListener('submit', (e) => {
+//     const valid = /^380\d{9}$/.test(phoneInput.value);
+//     if (!valid) {
+//       e.preventDefault();
+//       alert('Введіть номер у форматі 380XXXXXXXXX');
+//     }
+//   }
+//   );
 
 console.log(formEl);
 
@@ -42,6 +71,8 @@ backdropEl.addEventListener('click', (e) => {
 
 formEl.addEventListener('submit', async e => {
     e.preventDefault();
+
+    
     const { name, phone, comment } = e.target.elements;
     formData = {
         name: name.value,
@@ -58,13 +89,20 @@ formEl.addEventListener('submit', async e => {
     const orderData = response.data;
 
     console.log(orderData);
-
+iziToast.show({ 
+    message: `Ви замовили ${orderData.model}! 
+    Hомер замовлення ${orderData.orderNum}. 
+    Вже телефонуємо Вам 🫶`
+                });
     e.target.reset();
     closeModal();
     
 }
 catch (error) {
-    console.log(error.message);
+        console.log(error.message);
+        iziToast.show({
+            message: `error`
+                });
 }
 });
 
