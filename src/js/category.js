@@ -58,11 +58,9 @@ export function renderGallery(categories) {
 }
 
 // 5. Запуск всього процесу
-async function init() {
+export async function initcategories() {
   const categories = await getCategories();
   if (categories.length > 0) {
     renderGallery(categories);
   }
 }
-
-init();

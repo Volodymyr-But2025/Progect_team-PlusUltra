@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Меблерія</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -18,8 +18,10 @@
 
     <main>
       <load src="./partials/hero.html" />
-      <load src="./partials/furniture-category.html" />
-      <load src="./partials/furniture-list.html" />
+      <section class="furniture">
+        <load src="./partials/furniture-category.html" />
+        <load src="./partials/furniture-list.html" />
+      </section>
       <load src="./partials/about-us.html" />
       <load src="./partials/faq.html" />
       <load src="./partials/feedback.html" />
@@ -31,9 +33,5 @@
     <load src="./partials/order-modal.html" />
 
     <script type="module" src="./main.js"></script>
-
-    <!-- <script type="module" src="./js/category.js"></script> -->
-
-    <script type="module" src="./js/faq.js"></script>
   </body>
 </html>

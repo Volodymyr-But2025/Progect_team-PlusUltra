@@ -1,0 +1,98 @@
+.footer {
+  background-color: #6b0609;
+  padding-top: 0; /* Це прибере диру зверху */
+  padding-bottom: 0px; /* Залишаємо відступ знизу за макетом */
+  color: #ffffff;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  max-width: 1200px; /* або твоя ширина */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-logo img {
+  width: 180px;
+  display: block;
+}
+
+.footer-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-nav-link {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ФІКС ДЛЯ ІКОНОК (щоб не зникали) */
+.social-link svg {
+  fill: #ffffff;
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.footer-copyright {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* --- МОБІЛКА ТА ПЛАНШЕТ (До 1439px) --- */
+@media screen and (max-width: 1439px) {
+  .footer-copyright {
+    order: 10; /* Просто кидаємо його в самий кінець на малих екранах */
+    padding-bottom: 32px;
+  }
+}
+
+/* --- ПЛАНШЕТ (768px - 1439px) --- */
+@media screen and (min-width: 768px) and (max-width: 1439px) {
+  .footer-nav-list {
+    flex-direction: row;
+    gap: 24px;
+    padding-bottom: 0px;
+  }
+}
+
+/* --- ДЕСКТОП (1440px+) --- */
+@media screen and (min-width: 1440px) {
+  .footer-container {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0 64px;
+    gap: 0;
+  }
+
+  .footer-logo {
+    margin-right: 48px;
+  }
+
+  .footer-copyright {
+    margin-right: auto; /* Штовхає Меню та Соцмережі в правий бік */
+    text-align: left;
+  }
+
+  .footer-nav-list {
+    margin-right: 60px;
+    flex-direction: row;
+  }
+}
