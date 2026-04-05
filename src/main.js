@@ -1,3 +1,4 @@
+
 import { initcategories } from './js/category';
 import { initAccordion } from './js/modules';
 
@@ -9,3 +10,4 @@ document.addEventListener('DOMContentLoaded', () => {
   initcategories();
   // Сюди ж потім додаси інші модулі:
 });
+
