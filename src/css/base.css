@@ -28,8 +28,8 @@ main {
 main:has(.back-link) {
   text-align: center;
 }
-
 html {
+  scroll-behavior: smooth;
   box-sizing: border-box;
 }
 
