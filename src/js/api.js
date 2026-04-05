@@ -18,11 +18,11 @@ export async function getFurnitures() {
   const { data } = await axios.get(furnituresUrl, {
     params: {
       page: 1,
-      limit: 10,
+      limit: 8,
     },
   });
 
-  return data;
+  return data.furnitures;
 }
 
 export async function getFurnitureById(id) {

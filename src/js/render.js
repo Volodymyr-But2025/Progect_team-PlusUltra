@@ -1,4 +1,4 @@
-import { getCategories } from './api';
+import { getCategories, getFurnitures } from './api';
 import { refs } from './refs';
 
 //#region render category
@@ -55,21 +55,28 @@ export async function initcategories() {
 
 //#region render furniture list
 // Темплейт для однієї картки меблів
-function furnitureTemplate({ _id, name, price, images, description }) {
+function furnitureTemplate({ _id, name, price, images, color }) {
+  // Рендеримо крапки кольорів динамічно
+  const colorsMarkup = color
+    .map(
+      hex => `<span class="color-dot" style="background-color: ${hex}"></span>`
+    )
+    .join('');
+
   return `
-    <li class="furniture-list__item" data-id="${_id}">
-      <img src="${images[0]}" alt="${name}" class="furniture-list__image" />
-      <img src="${images[1]}" alt="${name}" class="furniture-list__image" />
-      <img src="${images[2]}" alt="${name}" class="furniture-list__image" />
-      <h3 class="furniture-list__title">${name}</h3>
-      "color": [
-        "#F5F5DC",
-        "#808080",
-        "#F5F5DC"
-      ]
-      
-      <p class="furniture-list__price">${price} грн</p>
-      <button class="furniture-list__btn" data-id="${id}">Деталі</button>
+    <li class="furniture-card" data-id="${_id}">
+      <img
+        src="${images[0]}" 
+        alt="${name}"
+        class="card-image"
+        loading="lazy"
+      />
+      <h2 class="card-title">${name}</h2>
+      <div class="card-colors">
+        ${colorsMarkup}
+      </div>
+      <p class="card-price">${price.toLocaleString()} грн</p>
+      <button class="details-btn" type="button" data-id="${_id}">Детальніше</button>
     </li>`;
 }
 
@@ -80,22 +87,21 @@ function furnitureListTemplate(furnitures) {
 
 // Логіка рендеру меблів
 export function renderFurnitureList(furnitures) {
-  const furnitureListEl = document.querySelector('.furniture-list');
-
-  if (!furnitureListEl) {
+  if (!refs.furnitureList) {
     console.error('Елемент .furniture-list не знайдено!');
     return;
   }
 
   const markup = furnitureListTemplate(furnitures);
-  furnitureListEl.insertAdjacentHTML('beforeend', markup);
+  refs.furnitureList.insertAdjacentHTML('beforeend', markup);
 }
 
 // Запуск рендеру меблів
 export async function initFurnitureList() {
-  const { results } = await getFurnitures();
+  const results = await getFurnitures();
   if (results && results.length > 0) {
     renderFurnitureList(results);
   }
+  console.log(results);
 }
 //#endregion render furniture list
