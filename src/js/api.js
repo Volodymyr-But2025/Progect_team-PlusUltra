@@ -1,8 +1,41 @@
 import axios from 'axios';
 
-const url = 'https://furniture-store-v2.b.goit.study/api/categories';
+const categoriesUrl = 'https://furniture-store-v2.b.goit.study/api/categories';
+const furnituresUrl = 'https://furniture-store-v2.b.goit.study/api/furnitures';
+const feedbackUrl = 'https://furniture-store-v2.b.goit.study/api/feedbacks';
 
 export async function getCategories() {
-  const { data } = await axios.get(url);
+  try {
+    const { data } = await axios.get(categoriesUrl);
+    return data;
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return [];
+  }
+}
+
+export async function getFurnitures() {
+  const { data } = await axios.get(furnituresUrl, {
+    params: {
+      page: 1,
+      limit: 8,
+    },
+  });
+
+  return data.furnitures;
+}
+
+export async function getFurnitureById(id) {
+  const { data } = await axios.get(`${furnituresUrl}/${id}`);
+  return data;
+}
+
+export async function getFeedbacks() {
+  const { data } = await axios.get(feedbackUrl, {
+    params: {
+      page: 1,
+      limit: 10,
+    },
+  });
   return data;
 }

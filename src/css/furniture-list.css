@@ -1,0 +1,129 @@
+.assortment-section {
+  /* padding: 24px 48px 56px; */
+}
+
+.furniture-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 34px 20px;
+  margin-bottom: 28px;
+  list-style: none;
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.furniture-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-image {
+  display: block;
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+
+.card-title {
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 400;
+  color: #161616;
+  margin-bottom: 10px;
+}
+
+.card-colors {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.color-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.color-light {
+  background-color: #c9c4bb;
+}
+
+.color-beige {
+  background-color: #cfb17d;
+}
+
+.color-dark {
+  background-color: #241d1d;
+}
+
+.card-price {
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: #161616;
+  margin-bottom: 16px;
+}
+
+.details-btn {
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 999px;
+  background-color: #ececec;
+  color: #161616;
+  font-size: 14px;
+  transition:
+    background-color 250ms ease,
+    color 250ms ease;
+}
+
+.details-btn:hover,
+.details-btn:focus {
+  background-color: #8b0000;
+  color: #ffffff;
+  outline: none;
+}
+
+.load-more-btn {
+  display: block;
+  width: 306px;
+  height: 36px;
+  margin: 0 auto;
+  border: none;
+  border-radius: 999px;
+  background-color: #8b0000;
+  color: #ffffff;
+  font-size: 14px;
+  transition: background-color 250ms ease;
+}
+
+.load-more-btn:hover,
+.load-more-btn:focus {
+  background-color: #6e0000;
+  outline: none;
+}
+
+@media screen and (max-width: 1439px) {
+  .assortment-section {
+    /* padding: 32px; */
+  }
+
+  .furniture-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .assortment-section {
+    /* padding: 20px 16px 40px; */
+  }
+
+  .furniture-list {
+    grid-template-columns: 1fr;
+  }
+}
