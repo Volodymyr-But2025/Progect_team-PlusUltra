@@ -1,4 +1,4 @@
-<div class="order-backdrop">
+<div class="order-backdrop is-open">
   <div class="order-modal-overlay">
     <button type="button" class="modal-close-button">
       <svg class="close-button" width="8" height="8">
@@ -13,7 +13,13 @@
       </label>
       <label for="phone"
         >Телефон*
-        <input type="tel" id="phone" placeholder="38 099 123 22 11" required />
+        <input
+          type="tel"
+          id="phone"
+          placeholder="38 099 123 22 11"
+          pattern="^380\d{9}$"
+          required
+        />
       </label>
       <label for="comment"
         >Коментар
@@ -27,3 +33,4 @@
     </form>
   </div>
 </div>
+<script type="module" src="../js/order-modal.js"></script>
