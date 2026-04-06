@@ -23,6 +23,7 @@
   gap: 16px;
   list-style: none; /* Прибираємо маркери, якщо не прибрали в reset */
   padding: 0;
+  margin-bottom: 40px;
 }
 
 .furniture-category__item {
