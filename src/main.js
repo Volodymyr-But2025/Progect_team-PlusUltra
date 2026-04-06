@@ -1,5 +1,6 @@
-import { initcategories } from './js/category';
+import { initcategories, initFurnitureList } from './js/render';
 import { initAccordion } from './js/modules';
+import { initCategoryClickHandler, initLoadMoreHandler } from './js/hendlers';
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM fully loaded and parsed');
@@ -7,5 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Викликаємо ініціалізацію акордеона
   initAccordion();
   initcategories();
+  initCategoryClickHandler();
+  initLoadMoreHandler();
+  initFurnitureList();
   // Сюди ж потім додаси інші модулі:
 });
+
+// const data = await getFurnitures();
+// console.log(data);
