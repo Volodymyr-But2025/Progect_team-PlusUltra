@@ -12,7 +12,8 @@
       rel="stylesheet"
     />
     <script type="module" crossorigin src="/Progect_team-PlusUltra/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/Progect_team-PlusUltra/assets/vendor-BG1e6_rG.js">
+    <link rel="modulepreload" crossorigin href="/Progect_team-PlusUltra/assets/vendor-b5a3dDts.js">
+    <link rel="stylesheet" crossorigin href="/Progect_team-PlusUltra/assets/vendor-DnveWo0P.css">
     <link rel="stylesheet" crossorigin href="/Progect_team-PlusUltra/assets/index-D46-LTY3.css">
   </head>
   <body>
@@ -511,7 +512,7 @@
   </div>
 </dialog>
 
-    <div class="order-backdrop">
+    <div class="order-backdrop is-open">
   <div class="order-modal-overlay">
     <button type="button" class="modal-close-button">
       <svg class="close-button" width="8" height="8">
@@ -526,7 +527,13 @@
       </label>
       <label for="phone"
         >Телефон*
-        <input type="tel" id="phone" placeholder="38 099 123 22 11" required />
+        <input
+          type="tel"
+          id="phone"
+          placeholder="38 099 123 22 11"
+          pattern="^380\d{9}$"
+          required
+        />
       </label>
       <label for="comment"
         >Коментар
