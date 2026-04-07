@@ -111,6 +111,13 @@
 .order-form input:focus {
     border: 1px solid rgba(8, 12, 9, 0.4);
 }
+.order-form input.input-error {
+    border: 1px solid #6b0609;
+}
+
+.order-form input.input-error:focus {
+    border: 1px solid #6b0609;
+}
 
 .order-form textarea {
     margin-top: 8px;
