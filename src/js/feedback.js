@@ -77,7 +77,7 @@ function renderStarIcons(containers, rate) {
 
 function renderReviews(reviews) {
   const container = document.querySelector('#reviews-container');
-  const markup = review
+  const markup = reviews
     .map(({ name, descr, rate }) => {
       const finalRating = roundRating(rate);
       return `
