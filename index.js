@@ -1,16 +1,16 @@
 import{a as y,S as U,N as G,P as Y,i as v,A as K}from"./assets/vendor-D7PREWqc.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))o(n);new MutationObserver(n=>{for(const s of n)if(s.type==="childList")for(const l of s.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&o(l)}).observe(document,{childList:!0,subtree:!0});function r(n){const s={};return n.integrity&&(s.integrity=n.integrity),n.referrerPolicy&&(s.referrerPolicy=n.referrerPolicy),n.crossOrigin==="use-credentials"?s.credentials="include":n.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function o(n){if(n.ep)return;n.ep=!0;const s=r(n);fetch(n.href,s)}})();function J(e){const t=[...e];for(let r=t.length-1;r>0;r-=1){const o=Math.floor(Math.random()*(r+1));[t[r],t[o]]=[t[o],t[r]]}return t}function Q(e){const t=e%1,r=Math.floor(e);return t>=.3&&t<=.7?r+.5:t>=.8?r+1:t<=.2?r:e}function Z(){document.querySelectorAll(".star-rating").forEach(t=>{const r=parseFloat(t.dataset.rating);ee(t,r)})}function ee(e,t){let r="";for(let o=1;o<=5;o++)o<=Math.floor(t)?r+=`
         <svg class="icon-star star-filled" width="20" height="20">
 
-          <use href="../star-rating.icons.svg#star-filled"></use>
+          <use href="./star-rating.icons.svg#star-filled"></use>
 
         </svg>`:o-.5===t?r+=`
         <svg class="icon-star star-half" width="20" height="20">
 
-          <use href="../star-rating.icons.svg#star-half"></use>
+          <use href="./star-rating.icons.svg#star-half"></use>
 
         </svg>`:r+=`
         <svg class="icon-star star-empty" width="20" height="20">
-          <use href="../star-rating.icons.svg#star-empty"></use>
+          <use href="./star-rating.icons.svg#star-empty"></use>
         </svg>`;e.innerHTML=r}function te(e){const t=document.querySelector("#reviews-container"),r=e.map(({name:o,descr:n,rate:s})=>`
       <div class="swiper-slide review-card">
         <div class="star-rating" data-rating="${Q(s)}"></div>
