@@ -50,7 +50,7 @@ function renderStarIcons(containers, rate) {
       starsMarkup += `
         <svg class="icon-star star-filled" width="20" height="20">
 
-          <use href="../star-rating.icons.svg#star-filled"></use>
+          <use href="./star-rating.icons.svg#star-filled"></use>
 
         </svg>`;
     } 
@@ -59,7 +59,7 @@ function renderStarIcons(containers, rate) {
       starsMarkup += `
         <svg class="icon-star star-half" width="20" height="20">
 
-          <use href="../star-rating.icons.svg#star-half"></use>
+          <use href="./star-rating.icons.svg#star-half"></use>
 
         </svg>`;
     } 
@@ -67,7 +67,7 @@ function renderStarIcons(containers, rate) {
     else {
       starsMarkup += `
         <svg class="icon-star star-empty" width="20" height="20">
-          <use href="../star-rating.icons.svg#star-empty"></use>
+          <use href="./star-rating.icons.svg#star-empty"></use>
         </svg>`;
     }
   }
