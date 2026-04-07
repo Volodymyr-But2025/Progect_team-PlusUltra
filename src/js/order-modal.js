@@ -87,13 +87,10 @@ refs.formEl.addEventListener('submit', async e => {
     color: "#1212ca"
   };
 
-  console.log(formData);
-
   try {
     const response = await axios.post('https://furniture-store-v2.b.goit.study/api/orders', formData);
     const orderData = response.data;
 
-    console.log(orderData);
     iziToast.show({
       message: `Ви замовили ${orderData.model}! 
     Номер вашого замовлення ${orderData.orderNum}. 
@@ -101,6 +98,7 @@ refs.formEl.addEventListener('submit', async e => {
         color: 'yellow',
        position: 'bottomCenter'
     });
+      
     e.target.reset();
     toggleOrderButtonState();
     closeOrderModal();
@@ -135,8 +133,8 @@ function closeOrderModal() {
 function toggleOrderButtonState() {
   const hasNameValue = refs.nameInput.value.trim() !== '';
   const hasPhoneValue = refs.phoneInput.value.trim() !== '';
-refs.nameInput.classList.remove('input-error');
-    refs.phoneInput.classList.remove('input-error');
+  refs.nameInput.classList.remove('input-error');
+  refs.phoneInput.classList.remove('input-error');
   refs.orderBtn.disabled = !(hasNameValue && hasPhoneValue);
 }
 
