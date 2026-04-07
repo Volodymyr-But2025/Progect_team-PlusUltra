@@ -38,3 +38,43 @@ export function initLoadMoreHandler() {
     await loadMoreFurniture();
   });
 }
+
+export function initHeaderMenuHandler() {
+  if (!refs.header) return;
+
+  const menuModal = refs.header.querySelector('.header_menu_svg');
+  const xModal = refs.header.querySelector('.header_x_svg');
+  const navList = refs.header.querySelector('.nav_list');
+
+  if (!menuModal || !xModal || !navList) return;
+
+  const closeMenu = () => {
+    xModal.classList.add('hide');
+    xModal.classList.remove('show');
+
+    menuModal.classList.add('show');
+    menuModal.classList.remove('hide');
+
+    navList.classList.remove('is-open');
+    document.body.classList.remove('menu-open');
+  };
+
+  menuModal.addEventListener('click', () => {
+    menuModal.classList.add('hide');
+    menuModal.classList.remove('show');
+
+    xModal.classList.add('show');
+    xModal.classList.remove('hide');
+
+    navList.classList.add('is-open');
+    document.body.classList.add('menu-open');
+  });
+
+  xModal.addEventListener('click', closeMenu);
+
+  navList.addEventListener('click', event => {
+    if (event.target.closest('a')) {
+      closeMenu();
+    }
+  });
+}
