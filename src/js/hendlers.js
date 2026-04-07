@@ -45,6 +45,8 @@ export function initHeaderMenuHandler() {
   const menuModal = refs.header.querySelector('.header_menu_svg');
   const xModal = refs.header.querySelector('.header_x_svg');
   const navList = refs.header.querySelector('.nav_list');
+  const shopLink = refs.header.querySelector('.button_list_items a');
+  const furnitureSection = document.querySelector('#furniture-category');
 
   if (!menuModal || !xModal || !navList) return;
 
@@ -77,4 +79,14 @@ export function initHeaderMenuHandler() {
       closeMenu();
     }
   });
+
+  if (shopLink && furnitureSection) {
+    shopLink.addEventListener('click', event => {
+      event.preventDefault();
+      furnitureSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    });
+  }
 }

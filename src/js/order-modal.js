@@ -1,8 +1,13 @@
 import axios from "axios";
 import iziToast from "izitoast";
 import 'izitoast/dist/css/iziToast.min.css';
+import { lockBodyScroll, unlockBodyScroll } from './scroll-lock';
 
 let formData = {};
+let selectedProduct = {
+  modelId: "682f9bbf8acbdf505592ac36",
+  color: "#1212ca",
+};
 
 const refs = {
   formEl: document.querySelector('.order-form'),
@@ -83,8 +88,8 @@ refs.formEl.addEventListener('submit', async e => {
     name: name.value,
     phone: phone.value,
     comment: commentValue,
-    modelId: "682f9bbf8acbdf505592ac36",
-    color: "#1212ca"
+    modelId: selectedProduct.modelId,
+    color: selectedProduct.color
   };
 
   try {
@@ -112,22 +117,21 @@ refs.formEl.addEventListener('submit', async e => {
   }
 });
 
-function disableBodyScroll() {
-  document.body.style.overflow = 'hidden';
-}
-
-function enableBodyScroll() {
-  document.body.style.overflow = '';
-}
-
 export function openOrderModal() {
   refs.backdropEl.classList.add('is-open');
-  disableBodyScroll();
+  lockBodyScroll();
+}
+
+export function setSelectedProduct(productData = {}) {
+  selectedProduct = {
+    ...selectedProduct,
+    ...productData,
+  };
 }
 
 function closeOrderModal() {
   refs.backdropEl.classList.remove('is-open');
-  enableBodyScroll();
+  unlockBodyScroll();
 }
 
 function toggleOrderButtonState() {
