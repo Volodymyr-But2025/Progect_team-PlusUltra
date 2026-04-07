@@ -6,6 +6,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+let reviewsSwiper = null;
+
 function shuffleFeedbacks(feedbacks) {
   const shuffled = [...feedbacks];
 
@@ -91,8 +93,11 @@ function renderReviews(review) {
 
 
 function initSwiper() {
-  
-  new Swiper('.reviews-swiper', {
+  if (reviewsSwiper) {
+    reviewsSwiper.destroy(true, true);
+  }
+
+  reviewsSwiper = new Swiper('.reviews-swiper', {
     modules: [Navigation, Pagination],
     observer: true,
     observeParents: true,
@@ -114,7 +119,7 @@ function initSwiper() {
 }
 
 
-async function fetchFeedbacks() {
+export async function initFeedbacks() {
   try {
     const response = await axios.get('https://furniture-store-v2.b.goit.study/api/feedbacks');
     
@@ -135,4 +140,3 @@ async function fetchFeedbacks() {
     console.error("Помилка при отриманні відгуків:", error);
   }
 }
-fetchFeedbacks();

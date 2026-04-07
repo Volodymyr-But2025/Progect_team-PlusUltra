@@ -1,8 +1,7 @@
 import { initcategories, initFurnitureList } from './js/render';
 import { initAccordion } from './js/modules';
-
 import { initCategoryClickHandler, initHeaderMenuHandler, initLoadMoreHandler } from './js/hendlers';
-import { getFurnitures } from './js/api';
+import { initFeedbacks } from './js/feedback';
 
 
 
@@ -17,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLoadMoreHandler();
   initFurnitureList();
   initHeaderMenuHandler();
+  initFeedbacks();
   // Сюди ж потім додаси інші модулі:
 });
 
