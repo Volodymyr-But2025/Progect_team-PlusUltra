@@ -1,4 +1,4 @@
-<dialog class="product-modal container" id="productModal" open="">
+<dialog class="product-modal container" id="productModal">
   <button class="product-modal__close" aria-label="Close modal">
     <svg viewBox="0 0 32 32">
       <path
@@ -87,14 +87,26 @@
         </svg>
       </div>
 
-      <div class="product-modal__colors">
-        <p>Колір</p>
-        <div class="product-modal__color-list">
-          <button type="button" aria-label="Світлий бежевий"></button>
-          <button type="button" aria-label="Бежевий"></button>
-          <button type="button" aria-label="Темний"></button>
+      <fieldset class="product-modal__colors">
+        <legend class="product-modal__colors-title">Колір</legend>
+
+        <div class="product-modal__colors-list">
+          <label class="color-option">
+            <input type="radio" name="color" value="light" checked />
+            <span class="color-swatch color-swatch--light"></span>
+          </label>
+
+          <label class="color-option">
+            <input type="radio" name="color" value="white" />
+            <span class="color-swatch color-swatch--white"></span>
+          </label>
+
+          <label class="color-option">
+            <input type="radio" name="color" value="dark" />
+            <span class="color-swatch color-swatch--dark"></span>
+          </label>
         </div>
-      </div>
+      </fieldset>
 
       <p class="product-modal__description">
         Класичний диван з м'якими подушками та високою спинкою, ідеальний для
@@ -107,3 +119,4 @@
     </div>
   </div>
 </dialog>
+<script src="./js/furniture-details-modal.js" defer></script>
