@@ -1,7 +1,15 @@
-import { getCategories, getFurnitures } from './api';
+﻿import { getCategories, getFurnitures } from './api';
 import { refs } from './refs';
 
-//#region render category
+const FURNITURE_PAGE_LIMIT = 8;
+const furnitureState = {
+  category: '',
+  currentPage: 0,
+  totalItems: 0,
+  loadedItems: 0,
+  isLoading: false,
+};
+
 const categoryClassMap = {
   "М'які меблі": 'soft-furniture',
   'Шафи та системи зберігання': 'storage-systems',
@@ -17,23 +25,22 @@ const categoryClassMap = {
   'Декор та аксесуари': 'decor-accessories',
 };
 
-// 2. Шаблон для однієї картки
-function categoryTemplate({ id, name }) {
-  // Шукаємо клас у мапі, якщо не знайшли — залишаємо порожньо
+function categoryTemplate({ _id, name }) {
   const categoryClass = categoryClassMap[name] || '';
 
   return `
-    <li class="furniture-category__item ${categoryClass}" data-id="${id}">
+    <li
+      class="furniture-category__item ${categoryClass}"
+      data-id="${_id}"
+    >
       <a href="#" class="furniture-category__link">${name}</a>
     </li>`;
 }
 
-// 3. Функція створення всієї розмітки
 function categoriesTemplate(categories) {
   return categories.map(categoryTemplate).join('');
 }
 
-// 4. Логіка рендеру
 export function renderGallery(categories) {
   if (!refs.furnitureCategoryList) {
     console.error('Елемент .furniture-category__list не знайдено!');
@@ -41,32 +48,26 @@ export function renderGallery(categories) {
   }
 
   const markup = categoriesTemplate(categories);
-  refs.furnitureCategoryList.insertAdjacentHTML('beforeend', markup); // Вставляємо розмітку в кінець списку
+  refs.furnitureCategoryList.insertAdjacentHTML('beforeend', markup);
 }
 
-// 5. Запуск всього процесу
 export async function initcategories() {
   const categories = await getCategories();
+
   if (categories.length > 0) {
     renderGallery(categories);
   }
 }
-//#endregion render category
 
-//#region render furniture list
-// Темплейт для однієї картки меблів
 function furnitureTemplate({ _id, name, price, images, color }) {
-  // Рендеримо крапки кольорів динамічно
   const colorsMarkup = color
-    .map(
-      hex => `<span class="color-dot" style="background-color: ${hex}"></span>`
-    )
+    .map(hex => `<span class="color-dot" style="background-color: ${hex}"></span>`)
     .join('');
 
   return `
     <li class="furniture-card" data-id="${_id}">
       <img
-        src="${images[0]}" 
+        src="${images[0]}"
         alt="${name}"
         class="card-image"
         loading="lazy"
@@ -80,28 +81,108 @@ function furnitureTemplate({ _id, name, price, images, color }) {
     </li>`;
 }
 
-// Функция створення всієї розмітки меблів
 function furnitureListTemplate(furnitures) {
   return furnitures.map(furnitureTemplate).join('');
 }
 
-// Логіка рендеру меблів
-export function renderFurnitureList(furnitures) {
+function scrollToFurnitureCategories() {
+  refs.furnitureCategoryTitle?.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  });
+}
+
+function setLoadMoreButtonState() {
+  if (!refs.loadMoreBtn) return;
+
+  refs.loadMoreBtn.disabled = furnitureState.isLoading;
+  refs.loadMoreBtn.textContent = furnitureState.isLoading
+    ? 'Завантаження...'
+    : furnitureState.loadedItems >= furnitureState.totalItems &&
+        furnitureState.totalItems > FURNITURE_PAGE_LIMIT
+      ? 'Згорнути'
+      : 'Показати ще';
+
+  refs.loadMoreBtn.hidden = furnitureState.totalItems <= FURNITURE_PAGE_LIMIT;
+}
+
+export function renderFurnitureList(furnitures, shouldAppend = false) {
   if (!refs.furnitureList) {
     console.error('Елемент .furniture-list не знайдено!');
     return;
   }
 
-  const markup = furnitureListTemplate(furnitures);
-  refs.furnitureList.insertAdjacentHTML('beforeend', markup);
+  if (shouldAppend) {
+    refs.furnitureList.insertAdjacentHTML(
+      'beforeend',
+      furnitureListTemplate(furnitures)
+    );
+    return;
+  }
+
+  refs.furnitureList.innerHTML = furnitureListTemplate(furnitures);
 }
 
-// Запуск рендеру меблів
-export async function initFurnitureList() {
-  const results = await getFurnitures();
-  if (results && results.length > 0) {
-    renderFurnitureList(results);
+async function loadFurniturePage({
+  category = furnitureState.category,
+  reset = false,
+} = {}) {
+  if (furnitureState.isLoading) {
+    return [];
   }
-  console.log(results);
+
+  if (reset) {
+    furnitureState.category = category;
+    furnitureState.currentPage = 0;
+    furnitureState.totalItems = 0;
+    furnitureState.loadedItems = 0;
+  }
+
+  furnitureState.isLoading = true;
+  setLoadMoreButtonState();
+
+  try {
+    const nextPage = furnitureState.currentPage + 1;
+    const { furnitures = [], totalItems = 0 } = await getFurnitures({
+      page: nextPage,
+      limit: FURNITURE_PAGE_LIMIT,
+      ...(category ? { category } : {}),
+    });
+
+    furnitureState.category = category;
+    furnitureState.currentPage = nextPage;
+    furnitureState.totalItems = totalItems;
+    furnitureState.loadedItems = reset
+      ? furnitures.length
+      : furnitureState.loadedItems + furnitures.length;
+
+    if (furnitures.length > 0) {
+      renderFurnitureList(furnitures, !reset);
+    } else if (reset && refs.furnitureList) {
+      refs.furnitureList.innerHTML = '';
+    }
+
+    return furnitures;
+  } catch (error) {
+    console.error('Error fetching furnitures:', error);
+    return [];
+  } finally {
+    furnitureState.isLoading = false;
+    setLoadMoreButtonState();
+  }
 }
-//#endregion render furniture list
+
+export async function initFurnitureList(options = {}) {
+  const category = options.category ?? '';
+  return loadFurniturePage({ category, reset: true });
+}
+
+export async function loadMoreFurniture() {
+  if (furnitureState.loadedItems >= furnitureState.totalItems) {
+    const results = await initFurnitureList({ category: furnitureState.category });
+    scrollToFurnitureCategories();
+    return results;
+  }
+
+  return loadFurniturePage();
+}

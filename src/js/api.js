@@ -1,4 +1,4 @@
-import axios from 'axios';
+﻿import axios from 'axios';
 
 const categoriesUrl = 'https://furniture-store-v2.b.goit.study/api/categories';
 const furnituresUrl = 'https://furniture-store-v2.b.goit.study/api/furnitures';
@@ -14,15 +14,16 @@ export async function getCategories() {
   }
 }
 
-export async function getFurnitures() {
+export async function getFurnitures({ page = 1, limit = 8, category = '' } = {}) {
   const { data } = await axios.get(furnituresUrl, {
     params: {
-      page: 1,
-      limit: 8,
+      page,
+      limit,
+      ...(category ? { category } : {}),
     },
   });
 
-  return data.furnitures;
+  return data;
 }
 
 export async function getFurnitureById(id) {
