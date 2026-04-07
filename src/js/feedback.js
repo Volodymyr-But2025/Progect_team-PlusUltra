@@ -36,21 +36,21 @@ function renderStarIcons(containers, rate) {
     if (i <= Math.floor(rate)) {
       starsMarkup += `
         <svg class="icon-star star-filled" width="20" height="20">
-          <use href="./star-rating.icons.svg#star-filled"></use>
+          <use href="../star-rating.icons.svg#star-filled"></use>
         </svg>`;
     } 
 
     else if (i - 0.5 === rate) {
       starsMarkup += `
         <svg class="icon-star star-half" width="20" height="20">
-          <use href="./star-rating.icons.svg#star-half"></use>
+          <use href="../star-rating.icons.svg#star-half"></use>
         </svg>`;
     } 
     
     else {
       starsMarkup += `
         <svg class="icon-star star-empty" width="20" height="20">
-          <use href="./star-rating.icons.svg#star-empty"></use>
+          <use href="../star-rating.icons.svg#star-empty"></use>
         </svg>`;
     }
   }
@@ -58,11 +58,14 @@ function renderStarIcons(containers, rate) {
 }
 
 
-function renderReviews(review) {
+function renderReviews(reviews) {
   const container = document.querySelector('#reviews-container');
-    const markup = review
-      .map(({ name, descr, rate }) => {
-        const finalRating = roundRating(rate);
+  if (!container) return;
+
+  const markup = reviews.map(({ name, descr, rate }) => {
+     
+      const finalRating = roundRating(rate);
+     
         return `
       <div class="swiper-slide review-card">
         <div class="star-rating" data-rating="${finalRating}"></div>
@@ -70,10 +73,10 @@ function renderReviews(review) {
         <h3 class="feedback-user-name">${name}</h3>
       </div>`;
       }).join('');
-   initStars();
+   
   container.innerHTML = markup;
  
-  console.log(markup);
+  initStars();
 }
 
 
@@ -84,10 +87,11 @@ function initSwiper() {
     observer: true,
     observeParents: true,
     slidesPerView: 1,
-    spaceBetween: 20,
+    spaceBetween: 10,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
+      disabledClass: 'button-disabled'
     },
     pagination: {
       el: '.swiper-pagination',
@@ -104,14 +108,11 @@ function initSwiper() {
 async function fetchFeedbacks() {
   try {
     const response = await axios.get('https://furniture-store-v2.b.goit.study/api/feedbacks');
-    
-   
     const data = response.data; 
 
     const feedbacksList = data.feedbacks; 
 
     if (feedbacksList && Array.isArray(feedbacksList)) {
-    
       renderReviews(feedbacksList.slice(0, 10));
       initSwiper();
     } else {
@@ -120,5 +121,6 @@ async function fetchFeedbacks() {
   } catch (error) {
     console.error("Помилка при отриманні відгуків:", error);
   }
-}
+};
+
 fetchFeedbacks();

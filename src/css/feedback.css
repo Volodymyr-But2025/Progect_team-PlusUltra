@@ -8,11 +8,13 @@
 }
 @media screen and (min-width:1440px){
     .feedback-title{
-        font-size: 36px;
+        font-size: 48px;
     }
 }
+
+
 .feedback-text-first{
-    padding-bottom: 80px;
+    padding-bottom: 60px;
     font-weight: 400;
         font-size: 18px;
         line-height: 1.6;
@@ -43,7 +45,7 @@
     flex-direction: column;
     padding-bottom: 48px;
     border: 1px solid #f3f3f3;
-    padding: 20px;
+    
     gap: 12px;
 }
 
@@ -66,16 +68,28 @@
 display: flex;
     align-items: center;
     justify-content: space-between;
-  
+
     margin-top: 32px;
 
 }
+
 .reviews-swiper {
     overflow: hidden;
-    padding-bottom: 60px;
+    
     position: relative;
     align-items: flex-start;
-    gap: 24px
+    gap: 24px;
+    margin-bottom: 64px;
+}
+@media screen and (min-width:768px){
+    .reviews-swiper{
+        margin-bottom: 32px;
+    }
+}
+@media screen and (min-width:1440px) {
+    .reviews-swiper {
+        margin-bottom: 64px;
+    }
 }
 
 .feedback-btn {
