@@ -1,5 +1,5 @@
 .assortment-section {
-  /* padding: 24px 48px 56px; */
+  padding-bottom: 48px;
 }
 
 .furniture-list {
@@ -128,5 +128,11 @@
 
   .furniture-list {
     grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .assortment-section {
+    padding-bottom: 80px;
   }
 }

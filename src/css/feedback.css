@@ -29,6 +29,16 @@
 .icon-star.star-filled {
     fill: #080C09;
 }
+
+.icon-star.star-half {
+    fill: #080C09;
+}
+
+.icon-star.star-empty {
+    fill: #ffffff;
+    stroke: #080C09;
+    stroke-width: 1.4;
+}
 .navigation-wrapper {
     position: absolute;
     right: 0;

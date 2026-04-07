@@ -148,16 +148,22 @@ body.modal-open {
   flex-shrink: 0;
 }
 
-.product-modal__rating .star-filled path {
-  fill: #111;
-  stroke: #111;
-  stroke-width: 1.5;
+.product-modal__rating .icon-star {
+  display: block;
 }
 
-.product-modal__rating .star-empty path {
-  fill: none;
-  stroke: #111;
-  stroke-width: 2;
+.product-modal__rating .star-filled {
+  fill: #111111;
+}
+
+.product-modal__rating .star-half {
+  fill: #111111;
+}
+
+.product-modal__rating .star-empty {
+  fill: #ffffff;
+  stroke: #111111;
+  stroke-width: 1.6;
 }
 
 .product-modal__colors {

@@ -6,6 +6,19 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+function shuffleFeedbacks(feedbacks) {
+  const shuffled = [...feedbacks];
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] = [
+      shuffled[randomIndex],
+      shuffled[index],
+    ];
+  }
+
+  return shuffled;
+}
 
 function roundRating(rating) {
   const fraction = rating % 1;
@@ -60,20 +73,20 @@ function renderStarIcons(containers, rate) {
 
 function renderReviews(review) {
   const container = document.querySelector('#reviews-container');
-    const markup = review
-      .map(({ name, descr, rate }) => {
-        const finalRating = roundRating(rate);
-        return `
+  const markup = review
+    .map(({ name, descr, rate }) => {
+      const finalRating = roundRating(rate);
+      return `
       <div class="swiper-slide review-card">
         <div class="star-rating" data-rating="${finalRating}"></div>
         <p class="feedback-text">${descr}</p>
         <h3 class="feedback-user-name">${name}</h3>
       </div>`;
-      }).join('');
-   initStars();
+    })
+    .join('');
+
   container.innerHTML = markup;
- 
-  console.log(markup);
+  initStars();
 }
 
 
@@ -111,8 +124,9 @@ async function fetchFeedbacks() {
     const feedbacksList = data.feedbacks; 
 
     if (feedbacksList && Array.isArray(feedbacksList)) {
-    
-      renderReviews(feedbacksList.slice(0, 10));
+      const randomizedFeedbacks = shuffleFeedbacks(feedbacksList);
+
+      renderReviews(randomizedFeedbacks.slice(0, 10));
       initSwiper();
     } else {
       console.error("Масив не знайдено в data.feedbacks:", data);
