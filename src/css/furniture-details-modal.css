@@ -244,6 +244,25 @@ body.modal-open {
   outline-offset: 3px;
 }
 
+.color-option input:checked+.color-swatch {
+  border: 3px solid #8e8e88;
+  box-shadow: inset 0 0 0 4px #f3f1eb;
+}
+
+.color-option input:checked+.color-swatch.color-swatch--dark {
+  border: 3px solid #8e8e88;
+  box-shadow: inset 0 0 0 4px #221d1a;
+}
+
+.color-option:hover .color-swatch {
+  transform: scale(1.05);
+}
+
+.color-option input:focus-visible+.color-swatch {
+  outline: 2px solid #980d14;
+  outline-offset: 3px;
+}
+
 .product-modal__description {
   margin: 0 0 24px;
   font-size: 14px;
