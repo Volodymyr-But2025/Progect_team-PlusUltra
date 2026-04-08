@@ -151,6 +151,7 @@ function renderProductModal(product) {
   if (priceEl) priceEl.textContent = `${price.toLocaleString()} грн`;
   if (ratingEl) {
     ratingEl.innerHTML = createRatingMarkup(rate);
+    ratingEl.setAttribute('role', 'img');
     ratingEl.setAttribute('aria-label', `${rate} out of 5 stars`);
   }
   if (colorsListEl) colorsListEl.innerHTML = createColorMarkup(color);
