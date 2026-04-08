@@ -1,4 +1,5 @@
 ﻿import axios from 'axios';
+import iziToast from 'izitoast';
 
 const categoriesUrl = 'https://furniture-store-v2.b.goit.study/api/categories';
 const furnituresUrl = 'https://furniture-store-v2.b.goit.study/api/furnitures';
