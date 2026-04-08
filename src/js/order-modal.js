@@ -16,6 +16,7 @@ const refs = {
   nameInput: document.getElementById('name'),
   phoneInput: document.getElementById('phone'),
   orderBtn: document.querySelector('.order-button'),
+  loader: document.querySelector('.js-loader'),
 };
 
 refs.phoneInput.addEventListener('input', () => {
@@ -53,17 +54,16 @@ document.addEventListener('keydown', e => {
 
 refs.formEl.addEventListener('submit', async e => {
   e.preventDefault();
-
     refs.nameInput.classList.remove('input-error');
     refs.phoneInput.classList.remove('input-error');
 
     
   const { name, phone, comment } = e.target.elements;
 
-    if (name.value.length === 1) {
+    if (name.value.length === 1 || name.value.length > 65) {
       refs.nameInput.classList.add('input-error');
     iziToast.show({
-      message: `Ім'я має складатись мінімум з 2 символів!`,
+      message: `Ім'я має складатись мінімум з 2 і максимум 64 символів!`,
         color: 'red',
        position: 'topCenter'
     });
@@ -81,7 +81,8 @@ refs.formEl.addEventListener('submit', async e => {
     });
     return;
   }
-    
+    showLoader();
+
   const commentValue = commentValidator(comment.value);
 
   formData = {
@@ -92,7 +93,8 @@ refs.formEl.addEventListener('submit', async e => {
     color: selectedProduct.color
   };
 
-  try {
+    try {
+      
     const response = await axios.post('https://furniture-store-v2.b.goit.study/api/orders', formData);
     const orderData = response.data;
 
@@ -105,16 +107,19 @@ refs.formEl.addEventListener('submit', async e => {
     });
       
     e.target.reset();
-    toggleOrderButtonState();
-    closeOrderModal();
+        toggleOrderButtonState();
+        hideLoader();
+        closeOrderModal();
+        
   } catch (error) {
-    console.log(error.message);
+        hideLoader();
     iziToast.show({
       message: `некорректні дані, будь ласка, перевірте ім'я і номер телефону!`,
         color: 'red',
        position: 'topCenter'
     });
-  }
+    }
+    
 });
 
 export function openOrderModal() {
@@ -152,3 +157,11 @@ function commentValidator(str) {
   }
   return str;
 }
+
+function showLoader() {
+    return refs.loader.classList.add('loader');
+};
+
+function hideLoader() {
+    return refs.loader.classList.remove('loader');
+};

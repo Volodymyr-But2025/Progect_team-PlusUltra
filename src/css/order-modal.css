@@ -16,7 +16,7 @@
     padding: 20px;
     overflow-y: auto;
     scrollbar-width: none;
-    -ms-overflow-style: none;
+    /* -ms-overflow-style: none; */
 }
 
 .order-modal-overlay {
@@ -95,7 +95,8 @@
     border: 1px solid rgba(8, 12, 9, 0.15);
     border-radius: 12px;
     padding: 8px 12px;
-    width: 295px;
+    /* width: 295px; */
+    width: 100%;
     height: 42px;
     font-family: "Raleway", sans-serif;
     font-weight: 400;
@@ -121,7 +122,8 @@
     border: 1px solid rgba(8, 12, 9, 0.15);
     border-radius: 12px;
     padding: 12px;
-    width: 295px;
+    /* width: 295px; */
+    width: 100%;
     height: 180px;
     font-family: "Raleway", sans-serif;
     font-weight: 400;
@@ -181,6 +183,55 @@ box-shadow: 0 1px 2px 0 rgba(8, 12, 9, 0.05), inset 0 -2px 1px 0 rgba(8, 12, 9, 
     line-height: 160%;
     color: rgba(8, 12, 9, 0.6);
 } */
+
+.js-loader {
+    display: none;
+}
+
+.js-loader.loader {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: block;
+    margin: 24px auto;
+    position: relative;
+    border: 2px solid #FF3D00;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+.js-loader.loader::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    border: 2px solid #FFF;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.fetch-button {
+    margin: 0 auto;
+    margin-top: 32px;
+    margin-bottom: 44px;
+
+}
+
+.disabled {
+    display: none;
+}
 
 @media (min-width: 768px) {
     .order-backdrop {
