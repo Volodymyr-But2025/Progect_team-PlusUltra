@@ -132,10 +132,20 @@ async function fetchFeedbacks() {
       renderReviews(randomizedFeedbacks.slice(0, 10));
       initSwiper();
     } else {
-      console.error("Масив не знайдено в data.feedbacks:", data);
+      // console.error("Масив не знайдено в data.feedbacks:", data);
+      iziToast.show({
+      message: `Масив не знайдено в data.feedbacks: ${data}`,
+        color: 'red',
+       position: 'topCenter'
+    });
     }
   } catch (error) {
-    console.error("Помилка при отриманні відгуків:", error);
+    // console.error("Помилка при отриманні відгуків:", error);
+    iziToast.show({
+      message: `Помилка при отриманні відгуків: ${error}`,
+        color: 'red',
+       position: 'topCenter'
+    });
   }
 };
 

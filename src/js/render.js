@@ -1,5 +1,6 @@
 ﻿import { getCategories, getFurnitures } from './api';
 import { refs } from './refs';
+import iziToast from 'izitoast';
 
 const FURNITURE_PAGE_LIMIT = 8;
 const furnitureState = {
@@ -179,7 +180,12 @@ async function loadFurniturePage({
 
     return furnitures;
   } catch (error) {
-    console.error('Error fetching furnitures:', error);
+    iziToast.show({
+      message: `Error fetching furnitures: ${error}`,
+        color: 'red',
+       position: 'topCenter'
+    });
+    // console.error('Error fetching furnitures:', error);
     return [];
   } finally {
     furnitureState.isLoading = false;
