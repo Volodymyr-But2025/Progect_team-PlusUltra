@@ -1,6 +1,7 @@
 import { getFurnitureById } from './api';
 import { openOrderModal, setSelectedProduct } from './order-modal';
 import { lockBodyScroll, unlockBodyScroll } from './scroll-lock';
+import iziToast from 'izitoast';
 
 const productModal = document.querySelector('#productModal');
 const closeBtn = document.querySelector('.product-modal__close');
@@ -176,7 +177,12 @@ async function handleDetailsClick(event) {
     renderProductModal(product);
     openProductModal();
   } catch (error) {
-    console.error('Fetch furniture error:', error);
+    // console.error('Fetch furniture error:', error);
+    iziToast.show({
+      message: `Error fetching furnitures: ${error}`,
+        color: 'red',
+       position: 'topCenter'
+    });
   }
 }
 

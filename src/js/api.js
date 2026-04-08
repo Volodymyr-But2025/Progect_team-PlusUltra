@@ -1,4 +1,5 @@
 ﻿import axios from 'axios';
+import iziToast from 'izitoast';
 
 const categoriesUrl = 'https://furniture-store-v2.b.goit.study/api/categories';
 const furnituresUrl = 'https://furniture-store-v2.b.goit.study/api/furnitures';
@@ -9,7 +10,12 @@ export async function getCategories() {
     const { data } = await axios.get(categoriesUrl);
     return data;
   } catch (error) {
-    console.error('Error fetching categories:', error);
+    // console.error('Error fetching categories:', error);
+    iziToast.show({
+      message: `Error fetching categories: ${error}`,
+        color: 'red',
+       position: 'topCenter'
+    });
     return [];
   }
 }
