@@ -95,6 +95,7 @@ function createColorMarkup(colors = []) {
 function updateMainImage(src, alt) {
   if (!mainImage) return;
 
+  mainImage.decoding = 'async';
   mainImage.src = src;
   mainImage.alt = alt;
 }
@@ -105,7 +106,7 @@ function createThumbnailsMarkup(images = [], name = '') {
     .map(
       (image, index) => `
         <button type="button" class="product-modal__thumb" data-image="${image}">
-          <img src="${image}" alt="${name} ${index + 2}" />
+          <img src="${image}" alt="${name} ${index + 2}" loading="lazy" decoding="async" />
         </button>`
     )
     .join('');

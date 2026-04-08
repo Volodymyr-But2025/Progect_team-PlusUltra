@@ -1,5 +1,32 @@
 <section class="hero">
-    <div class="container">
+  <picture class="hero-media">
+    <source
+      media="(min-width: 1440px)"
+      srcset="
+        ./img/hero/desk-bg-1x-min.jpg 1x,
+        ./img/hero/desk-bg-2x-min.jpg 2x
+      "
+    />
+    <source
+      media="(min-width: 768px)"
+      srcset="
+        ./img/hero/tab-bg-1x-min.jpg 1x,
+        ./img/hero/tab-bg-2x-min.jpg 2x
+      "
+    />
+    <img
+      class="hero-image"
+      src="./img/hero/mob-bg-1x-min.jpg"
+      srcset="
+        ./img/hero/mob-bg-1x-min.jpg 1x,
+        ./img/hero/mob-bg-2x-min.jpg 2x
+      "
+      alt=""
+      fetchpriority="high"
+      decoding="async"
+    />
+  </picture>
+    <div class="container hero-content">
         <h1 class="title">Створіть свій ідеальний дім</h1>
         <p class="section-text hero-text">
             Відкрийте для себе колекцію стильних та комфортних меблів, які перетворять

@@ -104,9 +104,21 @@
   transition: background-color 250ms ease;
 }
 
+.load-more-btn:disabled {
+  background-color: #d9d9d9;
+  color: #8a8a8a;
+  cursor: not-allowed;
+}
+
 .load-more-btn:hover,
 .load-more-btn:focus {
   background-color: #6e0000;
+  outline: none;
+}
+
+.load-more-btn:disabled:hover,
+.load-more-btn:disabled:focus {
+  background-color: #d9d9d9;
   outline: none;
 }
 

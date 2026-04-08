@@ -72,6 +72,7 @@ function furnitureTemplate({ _id, name, price, images, color }) {
         alt="${name}"
         class="card-image"
         loading="lazy"
+        decoding="async"
       />
       <h2 class="card-title">${name}</h2>
       <div class="card-colors">
@@ -93,18 +94,32 @@ function scrollToFurnitureCategories() {
   });
 }
 
+function hasExpandableFurniture() {
+  return furnitureState.totalItems > FURNITURE_PAGE_LIMIT;
+}
+
+function isCollapseState() {
+  return (
+    hasExpandableFurniture() &&
+    furnitureState.loadedItems >= furnitureState.totalItems
+  );
+}
+
 function setLoadMoreButtonState() {
   if (!refs.loadMoreBtn) return;
 
-  refs.loadMoreBtn.disabled = furnitureState.isLoading;
-  refs.loadMoreBtn.textContent = furnitureState.isLoading
-    ? 'Завантаження...'
-    : furnitureState.loadedItems >= furnitureState.totalItems &&
-        furnitureState.totalItems > FURNITURE_PAGE_LIMIT
-      ? 'Згорнути'
-      : 'Показати ще';
+  if (furnitureState.isLoading) {
+    refs.loadMoreBtn.disabled = true;
+    refs.loadMoreBtn.textContent = 'Завантаження...';
+    refs.loadMoreBtn.hidden = false;
+    return;
+  }
 
-  refs.loadMoreBtn.hidden = furnitureState.totalItems <= FURNITURE_PAGE_LIMIT;
+  refs.loadMoreBtn.hidden = false;
+  refs.loadMoreBtn.textContent = isCollapseState()
+    ? 'Згорнути'
+    : 'Показати ще';
+  refs.loadMoreBtn.disabled = !isCollapseState() && !hasExpandableFurniture();
 }
 
 export function renderFurnitureList(furnitures, shouldAppend = false) {
@@ -184,7 +199,11 @@ export async function initFurnitureList(options = {}) {
 }
 
 export async function loadMoreFurniture() {
-  if (furnitureState.loadedItems >= furnitureState.totalItems) {
+  if (refs.loadMoreBtn?.disabled || furnitureState.isLoading) {
+    return [];
+  }
+
+  if (isCollapseState()) {
     const results = await initFurnitureList({ category: furnitureState.category });
     scrollToFurnitureCategories();
     return results;
