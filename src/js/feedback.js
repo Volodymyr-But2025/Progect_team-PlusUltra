@@ -5,6 +5,8 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { refs } from './refs';
+import { hideLoaderFeedback, showLoaderFeedback } from './loader';
 
 function shuffleFeedbacks(feedbacks) {
   const shuffled = [...feedbacks];
@@ -32,20 +34,17 @@ function roundRating(rating) {
 
 function initStars() {
   const ratingContainers = document.querySelectorAll('.star-rating');
-  
+
   ratingContainers.forEach(container => {
     const rating = parseFloat(container.dataset.rating);
     renderStarIcons(container, rating);
   });
 }
 
-
-
 function renderStarIcons(containers, rate) {
   let starsMarkup = '';
-  
+
   for (let i = 1; i <= 5; i++) {
-    
     if (i <= Math.floor(rate)) {
       starsMarkup += `
         <svg class="icon-star star-filled" width="20" height="20">
@@ -53,18 +52,14 @@ function renderStarIcons(containers, rate) {
           <use href="./star-rating.icons.svg#star-filled"></use>
 
         </svg>`;
-    } 
-
-    else if (i - 0.5 === rate) {
+    } else if (i - 0.5 === rate) {
       starsMarkup += `
         <svg class="icon-star star-half" width="20" height="20">
 
           <use href="./star-rating.icons.svg#star-half"></use>
 
         </svg>`;
-    } 
-    
-    else {
+    } else {
       starsMarkup += `
         <svg class="icon-star star-empty" width="20" height="20">
           <use href="./star-rating.icons.svg#star-empty"></use>
@@ -73,7 +68,6 @@ function renderStarIcons(containers, rate) {
   }
   containers.innerHTML = starsMarkup;
 }
-
 
 function renderReviews(reviews) {
   const container = document.querySelector('#reviews-container');
@@ -93,9 +87,7 @@ function renderReviews(reviews) {
   initStars();
 }
 
-
 function initSwiper() {
-  
   new Swiper('.reviews-swiper', {
     modules: [Navigation, Pagination],
     observer: true,
@@ -105,7 +97,7 @@ function initSwiper() {
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
-      disabledClass: 'button-disabled'
+      disabledClass: 'button-disabled',
     },
     pagination: {
       el: '.swiper-pagination',
@@ -113,18 +105,20 @@ function initSwiper() {
     },
     breakpoints: {
       768: { slidesPerView: 2 },
-      1440: { slidesPerView: 3 }
-    }
+      1440: { slidesPerView: 3 },
+    },
   });
 }
 
-
 async function fetchFeedbacks() {
+  showLoaderFeedback();
   try {
-    const response = await axios.get('https://furniture-store-v2.b.goit.study/api/feedbacks');
-    const data = response.data; 
+    const response = await axios.get(
+      'https://furniture-store-v2.b.goit.study/api/feedbacks'
+    );
+    const data = response.data;
 
-    const feedbacksList = data.feedbacks; 
+    const feedbacksList = data.feedbacks;
 
     if (feedbacksList && Array.isArray(feedbacksList)) {
       const randomizedFeedbacks = shuffleFeedbacks(feedbacksList);
@@ -134,19 +128,22 @@ async function fetchFeedbacks() {
     } else {
       // console.error("Масив не знайдено в data.feedbacks:", data);
       iziToast.show({
-      message: `Масив не знайдено в data.feedbacks: ${data}`,
+        message: `Масив не знайдено в data.feedbacks: ${data}`,
         color: 'red',
-       position: 'topCenter'
-    });
+        position: 'topCenter',
+      });
+      hideLoaderFeedback();
     }
   } catch (error) {
+    hideLoaderFeedback();
     // console.error("Помилка при отриманні відгуків:", error);
     iziToast.show({
       message: `Помилка при отриманні відгуків: ${error}`,
-        color: 'red',
-       position: 'topCenter'
+      color: 'red',
+      position: 'topCenter',
     });
   }
-};
+  hideLoaderFeedback();
+}
 
 fetchFeedbacks();

@@ -9,4 +9,6 @@ export const refs = {
   orderModalOverlay: document.querySelector('.order-modal-overlay'),
   productModal: document.querySelector('.product-modal'),
   productModalCloseBtn: document.querySelector('.product-modal__close'),
+  loaderCategory: document.querySelector('.js-loader-category'),
+  loaderFeedback: document.querySelector('.js-loader-feedback'),
 };

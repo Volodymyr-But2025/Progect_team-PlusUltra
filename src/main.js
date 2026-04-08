@@ -1,7 +1,13 @@
 import { initcategories, initFurnitureList } from './js/render';
 import { initAccordion } from './js/modules';
 
-import { initCategoryClickHandler, initHeaderMenuHandler, initLoadMoreHandler } from './js/hendlers';
+import {
+  initCategoryClickHandler,
+  initHeaderMenuHandler,
+  initLoadMoreHandler,
+} from './js/hendlers';
+import { showLoaderFeedback } from './js/loader.js';
+import { showLoaderCategory } from './js/api.js';
 
 function runWhenIdle(callback, timeout = 1500) {
   if ('requestIdleCallback' in window) {
@@ -91,11 +97,7 @@ function initDeferredProductModal() {
   );
 }
 
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
-
   // Викликаємо ініціалізацію акордеона
   initAccordion();
   initcategories();
@@ -107,4 +109,3 @@ document.addEventListener('DOMContentLoaded', () => {
   initDeferredProductModal();
   // Сюди ж потім додаси інші модулі:
 });
-
