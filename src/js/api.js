@@ -9,7 +9,12 @@ export async function getCategories() {
     const { data } = await axios.get(categoriesUrl);
     return data;
   } catch (error) {
-    console.error('Error fetching categories:', error);
+    // console.error('Error fetching categories:', error);
+    iziToast.show({
+      message: `Error fetching categories: ${error}`,
+        color: 'red',
+       position: 'topCenter'
+    });
     return [];
   }
 }

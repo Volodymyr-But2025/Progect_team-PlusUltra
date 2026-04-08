@@ -163,7 +163,12 @@ async function handleDetailsClick(event) {
     renderProductModal(product);
     openProductModal();
   } catch (error) {
-    console.error('Fetch furniture error:', error);
+    // console.error('Fetch furniture error:', error);
+    iziToast.show({
+      message: `Error fetching furnitures: ${error}`,
+        color: 'red',
+       position: 'topCenter'
+    });
   }
 }
 
