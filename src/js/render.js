@@ -71,6 +71,8 @@ function furnitureTemplate({ _id, name, price, images, color }) {
         src="${images[0]}"
         alt="${name}"
         class="card-image"
+        width="305"
+        height="210"
         loading="lazy"
         decoding="async"
       />

@@ -61,6 +61,17 @@
   min-width: 32px;
   min-height: 32px;
 }
+.header_burger_btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  padding: 0;
+  background: transparent;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
 .nav_burger_menu_section svg {
   position: absolute;
   top: 0;

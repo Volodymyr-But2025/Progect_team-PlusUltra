@@ -105,8 +105,20 @@ function createThumbnailsMarkup(images = [], name = '') {
     .slice(1)
     .map(
       (image, index) => `
-        <button type="button" class="product-modal__thumb" data-image="${image}">
-          <img src="${image}" alt="${name} ${index + 2}" loading="lazy" decoding="async" />
+        <button
+          type="button"
+          class="product-modal__thumb"
+          data-image="${image}"
+          aria-label="Переглянути фото ${index + 2} товару ${name}"
+        >
+          <img
+            src="${image}"
+            alt="${name} ${index + 2}"
+            width="260"
+            height="108"
+            loading="lazy"
+            decoding="async"
+          />
         </button>`
     )
     .join('');
