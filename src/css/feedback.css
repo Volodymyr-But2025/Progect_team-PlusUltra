@@ -1,3 +1,6 @@
+.hidden{
+    display: none;
+}
 .feedback-title {
     font-weight: 700;
     font-size: 36px;
@@ -190,7 +193,4 @@ display: flex;
     bottom: 10px;
     top: auto !important;
 }
-.swiper-button-prev::after,
-.swiper-button-next::after {
-    content: "";
-}
+

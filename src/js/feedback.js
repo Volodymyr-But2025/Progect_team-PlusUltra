@@ -7,6 +7,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { refs } from './refs';
 import { hideLoaderFeedback, showLoaderFeedback } from './loader';
+const btnNav = document.querySelector('.swiper-buttons');
+
 
 function shuffleFeedbacks(feedbacks) {
   const shuffled = [...feedbacks];
@@ -112,6 +114,8 @@ function initSwiper() {
 
 async function fetchFeedbacks() {
   showLoaderFeedback();
+ 
+   btnNav?.classList.add('hidden');
   try {
     const response = await axios.get(
       'https://furniture-store-v2.b.goit.study/api/feedbacks'
@@ -125,6 +129,8 @@ async function fetchFeedbacks() {
 
       renderReviews(randomizedFeedbacks.slice(0, 10));
       initSwiper();
+    
+       btnNav?.classList.remove('hidden');
     } else {
       // console.error("Масив не знайдено в data.feedbacks:", data);
       iziToast.show({
@@ -133,6 +139,7 @@ async function fetchFeedbacks() {
         position: 'topCenter',
       });
       hideLoaderFeedback();
+      
     }
   } catch (error) {
     hideLoaderFeedback();
@@ -144,6 +151,7 @@ async function fetchFeedbacks() {
     });
   }
   hideLoaderFeedback();
+  
 }
 
 fetchFeedbacks();
